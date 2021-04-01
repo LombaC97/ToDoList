@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 
 def sign_up_view(request):
-    print(request.user)
+    
     form = UserCreationForm()
     if request.POST:
         form = UserCreationForm(request.POST)
