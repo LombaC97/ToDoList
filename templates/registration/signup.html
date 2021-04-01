@@ -1,0 +1,25 @@
+{% extends 'registration/login.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post">
+    {% csrf_token %}
+    <span class="login100-form-title">
+        Sign Up
+    </span>
+  {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field | attr:"class:input100"}}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+  <button type="submit" class="login100-form-btn">Sign up</button>
+</form> 
+
+
+{% endblock %}
+
