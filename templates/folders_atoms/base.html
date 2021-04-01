@@ -1,6 +1,5 @@
 
 
-{% extends 'registration/login.html' %}
 
 {% load static %}
 {% load widget_tweaks %}
@@ -14,13 +13,13 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' }"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' }">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' }">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' }">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' }">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
@@ -36,19 +35,27 @@
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="wrap-login100">
+			<div class="">
                 {% block content %}
-                   
-				
-				
+                
+                    {% for folder in folders %}  a
+                        <ul>
+                           <p>{{ folder.name }}</p> <a href="">Edit</a> <button class='delete_button' val={{folder.folder_id}}>Delete</button>
+                        </ul>
+                    {% endfor %}
+                <form action="{% url 'folders' %}" method="post">
+                    {% csrf_token %}
+                <input type="text" placeholder="Add new folder" name='new_folder'> 
+
+                <button type="submit" class="btn btn-primary">Add Folder</button>
+                </form>
                 {% endblock %}
 			</div>
 		</div>
 	</div>
 	
-	
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -64,5 +71,27 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
-</body>
+    <script>
+        $(document).ready(function(){
+            $('.delete_button').click( function(){
+                let id = $(this).attr('val')
+
+                $.ajax({
+                    "url": "{% url 'delete_folder' %}",
+                    "method" : "post",
+                    "data": {
+                        "delete_id" : id,
+                        "csrfmiddlewaretoken": '{{ csrf_token }}'
+                    },
+                    success: function(){
+                        location.reload()
+                    }   
+                }) 
+
+            })
+        })
+        
+    </script>
+
+   </body>
 </html>
