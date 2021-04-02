@@ -31,28 +31,86 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 <!--===============================================================================================-->
 </head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="">
-                {% block content %}
-                
-                    {% for folder in folders %}  a
-                        <ul>
-                           <p>{{ folder.name }}</p> <a href="">Edit</a> <button class='delete_button' val={{folder.folder_id}}>Delete</button>
-                        </ul>
-                    {% endfor %}
-                <form action="{% url 'folders' %}" method="post">
-                    {% csrf_token %}
-                <input type="text" placeholder="Add new folder" name='new_folder'> 
 
-                <button type="submit" class="btn btn-primary">Add Folder</button>
-                </form>
-                {% endblock %}
-			</div>
+<style>
+.header {
+    padding: 60px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+}
+
+.container {
+    width: 50%;
+    margin: 2rem auto;
+    text-align: center;
+    
+}
+
+
+#folder_table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#folder_table td, #folder_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#folder_table tr:nth-child(even){background-color: #f2f2f2;}
+
+#folder_table tr:hover {background-color: #ddd;}
+
+#folder_table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 33%;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+input{
+   text-align:center;
+}
+
+</style>
+<body>
+	<div class="header">
+       <h1>Folders</h1> 
+    </div>
+	
+		<div class="container" >
+
+                <table id="folder_table">
+                    <tr>
+                        <th>Folder name</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for folder in folders %}  
+                        
+                        <tr>
+                           <td><p class="" style="color: black;">{{ folder.name }}</p> </td>
+                           <td><a style="color: black;" href="">View Items</a> </td>
+                           <td><button class='delete_button' val={{folder.folder_id}}>Delete</button></td>
+                        </tr>
+                         
+                    {% endfor %}
+                </table>
+                  
 		</div>
-	</div>
+        <div class="container" style="padding-bottom: 20px;">
+            <form action="{% url 'folders' %}" method="post" style="display: block">
+                {% csrf_token %}
+            <input type="text" placeholder="Add new folder" class="" maxlength="30" name='new_folder'> 
+            <button type="submit"  class="btn btn-success">Add Folder</button>
+            </form>     
+        </div>
+      
 	
 <!--===============================================================================================-->
 	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
@@ -84,7 +142,7 @@
                         "csrfmiddlewaretoken": '{{ csrf_token }}'
                     },
                     success: function(){
-                        location.reload()
+                        window.location.replace("{% url 'folders' %}")
                     }   
                 }) 
 
