@@ -22,11 +22,10 @@ from django.views.generic.base import RedirectView
 
 handler404 = 'accounts.views.handler404'
 urlpatterns = [
-   
+    path('', RedirectView.as_view(url='toDoList/folders')),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('toDoList/', include('to_do_list.urls'))
-       
-] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('toDoList/', include('to_do_list.urls'))  
+]
 

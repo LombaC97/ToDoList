@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'ensolvers.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dcg38c26o60cm6',
+        'HOST': 'ec2-3-233-43-103.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'mnfedpeeccxkkw',
+        'PASSWORD': 'bda9323196388cfa0684e5ecb5ed8542aa89ecf1a78e08e1ee903f7d6efbad19'
     }
 }
 
