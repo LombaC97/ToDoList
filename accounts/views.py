@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -17,5 +18,6 @@ def sign_up_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
+            return redirect(reverse_lazy('folders'))
         
     return render(request, 'registration/signup.html', {'form': form})

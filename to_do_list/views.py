@@ -13,7 +13,7 @@ def display_folders(request):
     folders = Folder.objects.filter(user_id = request.user)
     print('FOOOOOLDEEEEEEEEEERSSSSSSSSSS')
     print(folders)
-    return render(request, 'folders_atoms/base.html', {"folders": folders})
+    return render(request, 'folders_atoms/base.html', {"folders": folders, "username": request.user.username})
 
 @login_required
 def delete_folder(request):
