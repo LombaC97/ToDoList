@@ -14,16 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.generic.base import RedirectView
 #from django.conf.urls.static import static
 
+
+handler404 = 'accounts.views.handler404'
 urlpatterns = [
-    path('', RedirectView.as_view(url='accounts/login')),
+   
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('toDoList/', include('to_do_list.urls'))
-    
+       
 ] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

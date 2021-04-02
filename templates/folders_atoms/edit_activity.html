@@ -1,0 +1,20 @@
+{% extends 'folders_atoms/base.html' %}
+
+
+{% block table %}
+{% endblock %}
+
+{% block input %}
+<div class="container" style="padding-bottom: 20px;">
+    <form action="{% url 'edit_activity' pk=activity.activity_id %}" method="post" style="display: block">
+        {% csrf_token %}
+    <input type="text" value={{activity.name}} class="" maxlength="30" name='edit_name'> 
+    <button type="submit"  class="btn btn-success">Edit Activity</button>
+    </form>     
+   
+</div>
+
+{% endblock %}
+
+{% block custom_script %}
+{% endblock %}

@@ -21,3 +21,7 @@ def sign_up_view(request):
             return redirect(reverse_lazy('folders'))
         
     return render(request, 'registration/signup.html', {'form': form})
+
+
+def handler404(request, exception):
+    return redirect(reverse_lazy('folders'))

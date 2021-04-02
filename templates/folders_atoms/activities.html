@@ -1,0 +1,57 @@
+{% extends 'folders_atoms/base.html' %}
+
+
+{% block table %}
+<div class="container" >
+<table id="folder_table">
+    <tr>
+        <th>{{folder_name}}</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for activity in activities %}  
+        <tr>
+           <td><p class="" style="color: black;">{{ activity.name }}</p> </td>
+           <td><a style="color: black;" href="{% url 'edit_activity' pk=activity.activity_id %}">Edit</a> </td>
+           <td><button class='delete_button' val={{activity.activity_id}}>Delete</button></td>
+        </tr>
+         
+    {% endfor %}
+</table>
+</div>
+{% endblock %}
+
+{% block input %}
+<div class="container" style="padding-bottom: 20px;">
+    <form action="{% url 'activities' pk=folder_id %}" method="post" style="display: block">
+        {% csrf_token %}
+    <input type="text" placeholder="Enter new activity" class="" maxlength="30" name='new_activity'> 
+    <button type="submit"  class="btn btn-success">Add Activity</button>
+    </form>     
+</div>
+
+{% endblock %}
+
+{% block custom_script %}
+<script>
+$(document).ready(function(){
+    $('.delete_button').click( function(){
+        let id = $(this).attr('val')
+
+        $.ajax({
+            "url": "{% url 'delete_activity' %}",
+            "method" : "post",
+            "data": {
+                "delete_id" : id,
+                "folder_id" : "{{folder_id}}",
+                "csrfmiddlewaretoken": '{{ csrf_token }}'
+            },
+            success: function(){
+                window.location.replace("{% url 'activities' pk=folder_id %}")
+            }   
+        }) 
+
+    })
+})
+</script>
+{% endblock %}

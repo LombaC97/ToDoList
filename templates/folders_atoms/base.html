@@ -32,8 +32,9 @@
 
 <body>
 	{% include 'folders_atoms/header.html' %}
+    {% block table %}
 		<div class="container" >
-
+            
                 <table id="folder_table">
                     <tr>
                         <th>Folder name</th>
@@ -44,21 +45,24 @@
                         
                         <tr>
                            <td><p class="" style="color: black;">{{ folder.name }}</p> </td>
-                           <td><a style="color: black;" href="">View Items</a> </td>
+                           <td><a style="color: black;" href="{% url 'activities' pk=folder.folder_id %}">View Items</a> </td>
                            <td><button class='delete_button' val={{folder.folder_id}}>Delete</button></td>
                         </tr>
                          
                     {% endfor %}
                 </table>
-                  
+                            
 		</div>
+        {% endblock %}
+        {% block input %}  
         <div class="container" style="padding-bottom: 20px;">
             <form action="{% url 'folders' %}" method="post" style="display: block">
                 {% csrf_token %}
-            <input type="text" placeholder="Add new folder" class="" maxlength="30" name='new_folder'> 
+            <input type="text" placeholder="Enter new folder" class="" maxlength="30" name='new_folder'> 
             <button type="submit"  class="btn btn-success">Add Folder</button>
             </form>     
         </div>
+        {% endblock %}
       
 	
 <!--===============================================================================================-->
@@ -77,7 +81,7 @@
 	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'js/main.js' %}"></script>
-
+   {% block custom_script %}
     <script>
         $(document).ready(function(){
             $('.delete_button').click( function(){
@@ -99,6 +103,7 @@
         })
         
     </script>
+    {% endblock %}
 
    </body>
 </html>
