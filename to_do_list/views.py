@@ -11,15 +11,13 @@ def display_folders(request):
             new = Folder(name=request.POST.get('new_folder'), user_id = request.user)
             new.save()
     folders = Folder.objects.filter(user_id = request.user)
-    print('FOOOOOLDEEEEEEEEEERSSSSSSSSSS')
-    print(folders)
+  
     return render(request, 'folders_atoms/base.html', {"folders": folders, "username": request.user.username})
 
 @login_required
 def delete_folder(request):
     if request.POST.get('delete_id'):
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print(request.POST['delete_id'])
+       
         Folder.objects.filter(folder_id = request.POST['delete_id']).delete()
 
     return HttpResponse('')
