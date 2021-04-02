@@ -8,7 +8,7 @@
 <div class="container" style="padding-bottom: 20px;">
     <form action="{% url 'edit_activity' pk=activity.activity_id %}" method="post" style="display: block">
         {% csrf_token %}
-    <input type="text" value={{activity.name}} class="" maxlength="30" name='edit_name'> 
+    <input type="text" value="{{activity.name}}" class="" maxlength="30" name='edit_name'> 
     <button type="submit"  class="btn btn-success">Edit Activity</button>
     </form>     
    
