@@ -10,7 +10,7 @@ Consiste en una aplicación web sencilla, la cual permite:
 * Registrar usuarios
 * Loguear usuarios
 * Crear carpetas asociadas a cada usuario
-* Crear dentro de cada carpeta, actividades asociadas a cada una
+* Crear, dentro de cada carpeta, actividades asociadas a cada una
 
 ## Tecnologías
 _En el proyecto se encuentra un archivo requirements.txt con todo lo necesario para ejecutar el mismo, sin embargo,
