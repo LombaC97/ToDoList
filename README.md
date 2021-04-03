@@ -66,3 +66,5 @@ https://powerful-thicket-43913.herokuapp.com/
 
 Con dicho usuario se podran visualizar algunos ejemplos ya creados previamente, sin embargo, también es posible crear un usuario nuevo a través
 de la funcionalidad de Sign Up
+
+Por favor les agradezco comunicarse conmigo ante cualquier duda o inquietud que pudiera surgir
