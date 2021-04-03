@@ -58,8 +58,8 @@
         <div class="container" style="padding-bottom: 20px;">
             <form action="{% url 'folders' %}" method="post" style="display: block">
                 {% csrf_token %}
-            <input type="text" placeholder="Enter new folder" required maxlength="30" name='new_folder'> 
-            <button type="submit"  class="btn btn-success">Add Folder</button>
+              <input type="text" placeholder="Enter new folder" class="input100 input_text" required maxlength="30"  name='new_folder'> 
+              <button type="submit"  class="btn btn-success">Add Folder</button>
             </form>     
         </div>
         {% endblock %}

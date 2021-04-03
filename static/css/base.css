@@ -51,3 +51,18 @@
 input{
    text-align:center;
 }
+
+.input_text{
+   width: 50%;
+   margin: 0 auto;
+}
+
+form > button {
+   margin-top: 6px;
+}
+
+@media screen and (max-width: 860px){
+  .input_text{
+    width: 100%;
+ }
+}

@@ -25,6 +25,7 @@ def delete_folder(request):
     try:
         if request.POST.get('delete_id'):
             folder = Folder.objects.get(folder_id = request.POST['delete_id'])
+            #We check if folder user id is the same as current user id
             if folder.user_id.id == request.user.id:
                 folder.delete()
     except:
@@ -35,7 +36,7 @@ def delete_folder(request):
 @login_required
 def display_activities(request, pk = None):
     #If there's an error trying to get the folder, it means that the user doesn't have permission to see that folder
-    #Or directly that the folder exists. In both cases, user will be redirected to folders view
+    #Or directly that the folder doesn't exist. In both cases, user will be redirected to folders view
     try:
         folder = Folder.objects.get(pk = pk, user_id = request.user)
     except:
@@ -45,7 +46,7 @@ def display_activities(request, pk = None):
         if request.POST.get('new_activity') != "":
             new = Activity(name=request.POST['new_activity'], folder_id = folder)
             new.save()
-    #Fetch all activities
+    #Fetch all activities that belong to current user
     activities = Activity.objects.filter(folder_id = pk, folder_id__user_id = request.user)
 
     return render(request, 'folders_atoms/activities.html', {"activities": activities, "folder_id": pk,"folder_name": folder.name, "username": request.user.username})
@@ -57,7 +58,8 @@ def delete_activity(request):
     if request.POST.get('delete_id'):
         #We try to get the activity, if there's an error, it means that the activity doesn't belong to this user or folder
         try:
-            activity = Activity.objects.get(pk = request.POST['delete_id'],folder_id=request.POST['folder_id'] ,folder_id__user_id = request.user)
+            #Here we're trying to delete an activity, we're also checking if folder's activity has the same current user registered
+            activity = Activity.objects.get(pk = request.POST['delete_id'], folder_id=request.POST['folder_id'], folder_id__user_id = request.user)
             activity.delete()
         except:
             pass
@@ -67,16 +69,21 @@ def delete_activity(request):
 #Function to edit activities
 @login_required
 def edit_activity(request, pk):
+    #We try to get the activity, if there's an error, it means that the activity doesn't belong to this user or folder
     try:
         activity = Activity.objects.get(pk = pk, folder_id__user_id = request.user)
-       
+        #If user want to edit
         if request.POST:
+            #Lets get activity edit_name
             if request.POST.get('edit_name'):
+                #Update the name and save
                 activity.name = request.POST['edit_name']
                 activity.save()
+                #Then redirect to activities view
                 return redirect(reverse_lazy('activities', kwargs={'pk': activity.folder_id.folder_id}))
     except:
+        #If there's an error, just redirect to folders view
         return redirect(reverse_lazy('folders'))
-    
+    #Return this if request was a GET
     return render(request, 'folders_atoms/edit_activity.html', {"activity": activity})
 
