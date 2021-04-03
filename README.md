@@ -69,7 +69,7 @@ de la funcionalidad de Sign Up
 
 ## Importante a tener en cuenta
 
-Únicamente en el servidor (con debug= False) funciona un feature que básicamente permite redirigir las peticiones de urls que no existen, por ejemplo, si se intenta acceder a la url /ToDoList/newList (la cual no existe) en el servidor esta solicitud será redirigida a una url por defecto.
+Únicamente en el servidor (con debug= False) funciona un feature que básicamente permite redirigir las peticiones de urls que no existen, por ejemplo, si se intenta acceder a la url /ToDoList/newList (la cual no existe) en el servidor esta solicitud será redirigida a una url por defecto y no arrojará ningún error.
 
 Sin embargo, si se realiza lo mismo con la versión local que se obtiene al clonar este repositorio (debug = True) dicha funcionalidad, a pesar de estar también implementada, no se encuentra activa por la manera en que funciona Django. En este caso, se mostrará un mensaje de error de Django indicando que no se encontró la URL.
 
