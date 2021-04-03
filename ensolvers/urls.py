@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.generic.base import RedirectView
-#from django.conf.urls.static import static
 
 
+#This handler is used to redirect to folder (and if user is not logged in, to login view)
+#when tries to access to a non existing url. It is IMPORTANT to say that this only works
+#on production, when debug is False
 handler404 = 'accounts.views.handler404'
+
 urlpatterns = [
     path('', RedirectView.as_view(url='toDoList/folders')),
     path('admin/', admin.site.urls),

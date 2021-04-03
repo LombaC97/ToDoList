@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 # Create your views here.
 
-
+#Used to register a new user
 def sign_up_view(request):
     
     form = UserCreationForm()
@@ -22,6 +22,6 @@ def sign_up_view(request):
         
     return render(request, 'registration/signup.html', {'form': form})
 
-
+#Handler used to redirect a non existing url user request
 def handler404(request, exception):
     return redirect(reverse_lazy('folders'))

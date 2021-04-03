@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import display_folders, delete_folder, display_activities, delete_activity, edit_activity
 
-
+#Url patterns to match user folders requests
 urlpatterns = [
     path('folders/', display_folders , name='folders'),
     path('folders/delete', delete_folder, name='delete_folder'),
