@@ -40,6 +40,9 @@ _Se incluye un archivo run.sh probando únicamente en Linux Ubuntu 20.04, dicho 
 4) Instala las dependencias del archivo requirements.txt en el entorno virtual
 5) Ejecuta el proyecto
 
+Para ejecutar el archivo, desde la terminal se debe ingresar a la carpeta del proyecto y ejecutar "./run.sh".
+De arrojar algun error antes de iniciarse, es importante dar permisos de ejecución a dicho archivo.
+
 Sin embargo, en caso de que algo falle, para poder ejecutar el proyecto:
 
 1) Se debe instalar python 3 (preferiblemente 3.6 en adelante)
