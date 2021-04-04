@@ -62,6 +62,8 @@ El mismo se puede encontrar en el siguiente enlace:
 
 https://powerful-thicket-43913.herokuapp.com/
 
+(Al clickear el link, puede demorar algunos segundos en abrir la primera vez)
+
 * Usuario por ya creado: carlox97
 * Contraseña: mynameiscarlos
 
